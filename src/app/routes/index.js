@@ -13,9 +13,9 @@ module.exports = function(app) {
 	app.get(config.app.webroot + '/index', user.requiresLogin, index.index);
 	
 	// Function
-	app.post(config.app.webroot + '/getSportData', user.requiresLogin, index.getData);
-	app.post(config.app.webroot + '/saveData', user.requiresLogin, index.saveData);
+	// app.post(config.app.webroot + '/getSportData', user.requiresLogin, index.getData);
+	// app.post(config.app.webroot + '/saveData', user.requiresLogin, index.saveData);
 	
-	// Service URIs
-	app.post(config.app.webroot + '/listIds', user.requiresLogin, index.listIds);
+	// // Service URIs
+	// app.post(config.app.webroot + '/listIds', user.requiresLogin, index.listIds);
 };

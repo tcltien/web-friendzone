@@ -24,6 +24,6 @@ exports.index = function(req, res) {
     logger.info('Index page start..........');
 	logger.debug('Render index.html');
 	
-		res.render('index.html', {			
+		res.render('index2.html', {			
 		});		
 };

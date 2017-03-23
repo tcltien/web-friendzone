@@ -14,7 +14,7 @@ var http = require("http");
 
 var admin = require("firebase-admin");
 // Fetch the service account key JSON file contents
-var serviceAccount = require("/Volumes/Data/keyfirebase/FriendZone-fddf94f055bf.json");
+var serviceAccount = require("D:/FriendZone-2da88f3ea73f.json");
 
 
 // Initialize the app with a service account, granting admin privileges
@@ -87,8 +87,16 @@ exports.index = function(req, res) {
 };
 
 
-
-
+exports.signup = function(req, res) {
+	logger.info('Signup page start..........');
+	res.render('signup.html', {			
+	});
+}
+exports.createnewuser = function(req, res) {
+	logger.info('Create new user start..........');
+	
+	res.send("Ok");
+}
 
 
 

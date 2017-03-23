@@ -1,0 +1,69 @@
+{% extends 'layout.html' %} {% block content %}
+
+<body id="signup-page">
+	<div class="main-container">
+		<p> Email: </p>
+		<input class="email" type="text"/>
+		<p> password: </p>
+		<input class="password" type="text"/>
+		<button class="createNewUser"> Signup </button>
+		<button class="login"> Signin </button>
+		<button class="send"> send email verify </button>
+	</div>
+
+	
+
+	<script src="js/jquery.min.js"></script>
+	<script>
+	
+	
+	$( ".createNewUser" ).click(function() {
+		createNewUser($('.email').val(), $('.password').val());
+	});
+	$( ".login" ).click(function() {
+		app.auth().signInWithEmailAndPassword("tienhal89@yahoo.com.vn", "111111").catch(function(error) {
+			// Handle Errors here.
+			var errorCode = error.code;
+			var errorMessage = error.message;
+			// ...
+			
+		});
+		
+	});
+	$( ".send" ).click(function() {
+		sendVerifyEmail();
+	});
+	function createNewUser(email, password){
+		app.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+			  // Handle Errors here.
+			  var errorCode = error.code;
+			  var errorMessage = error.message;
+			  console.log(errorMessage);
+			  // ...
+		});
+	}
+	function sendVerifyEmail() {
+		app.auth().onAuthStateChanged(function(user) {
+		  if (user) {
+			// User is signed in.
+			if (!user.emailVerified) {
+				user.sendEmailVerification().then(function() {
+					console.log("email sent");
+				}, function(error) {
+					console.log("email didn't sent");
+				});
+			}
+		  } else {
+			// No user is signed in.
+			console.log("b");
+		  }
+		});
+	}
+	
+	
+	
+	
+</script>
+</body>
+
+{% endblock %}

@@ -27,27 +27,24 @@
       }
 </style>
 <script src="{{webroot}}/js/page/page.js"></script>
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbN5EmVQ7xjT3O6JEjWZAwl5CBJXUzVHM&callback=initMap">
-</script>
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-    </script>
 
-<script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCeh3HABvSU4bbICl8plUf3BZbPzjKDMqc",
-    authDomain: "bold-result-157702.firebaseapp.com",
-    databaseURL: "https://bold-result-157702.firebaseio.com",
-    storageBucket: "bold-result-157702.appspot.com",
-    messagingSenderId: "441776107335"
-  };
-  firebase.initializeApp(config);
-  var database = firebase.database();
+	function loadScript(src,callback){
+  
+		var script = document.createElement("script");
+		script.type = "text/javascript";
+		
+		document.getElementsByTagName("head")[0].appendChild(script);
+		script.src = src;
+	}
+	loadScript('http://maps.googleapis.com/maps/api/js?key=AIzaSyAbN5EmVQ7xjT3O6JEjWZAwl5CBJXUzVHM&callback=initMap',
+              function(){log('google-loader has been loaded, but not the maps-API ');});
+	function log(str){
+	  
+	}
 </script>
-
-
 
 <section id="main">
 	<p>Click the button to get your coordinates.</p>
@@ -55,6 +52,7 @@
 	<button onclick="getLocation()">Try It</button>
 
 	<p id="demo"></p>
+	<a href="{{webroot}}/signup">Sign Up </a>
 
 
 <fb:login-button id="loginFace" scope="public_profile,email" onlogin="checkLoginState();">
@@ -86,13 +84,14 @@ var map;
 var markers = [];
 // end
 var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-setInterval(function(){
-	getLocation();
-}, 1000);
+// setInterval(function(){
+// 	getLocation();
+// }, 1000);
 function getLocation() {
     if (navigator.geolocation) {
-    	navigator.geolocation.getCurrentPosition(showPosition);
-        //navigator.geolocation.watchPosition(showPosition);
+    	//navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.watchPosition(showPosition);
+        
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
